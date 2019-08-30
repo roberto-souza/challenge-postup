@@ -1,6 +1,7 @@
 const Types = {
   GET_ALL_REQUEST: 'posts/GET_ALL_REQUEST',
   GET_ALL_SUCCESS: 'posts/GET_ALL_SUCCESS',
+  INSERT: 'posts/INSERT',
 };
 
 export const PostTypes = Types;
@@ -15,6 +16,8 @@ export function reducer(state = INITIAL_STATE, action) {
       return { ...state };
     case Types.GET_ALL_SUCCESS:
       return { ...state, posts: action.payload };
+    case Types.INSERT:
+      return { ...state };
     default:
       return state;
   }
@@ -27,6 +30,10 @@ const PostActions = {
   getAllPostsSuccess: posts => ({
     type: Types.GET_ALL_SUCCESS,
     payload: posts,
+  }),
+  insertPost: post => ({
+    type: Types.INSERT,
+    payload: post,
   }),
 };
 

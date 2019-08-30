@@ -21,6 +21,11 @@ export default function Home() {
   const dispatch = useDispatch();
   const posts = useSelector(state => state.post.posts);
 
+  function handleSubmit(data, { resetForm }) {
+    dispatch(PostActions.insertPost({ ...data, upVotes: 0 }));
+    resetForm();
+  }
+
   const init = useCallback(() => {
     dispatch(PostActions.getAllPosts());
   }, [dispatch]);
@@ -32,7 +37,11 @@ export default function Home() {
   return (
     <Container>
       <ContentTop>
-        <Form schema={PostValidation} onSubmit={() => {}} autoComplete="off">
+        <Form
+          schema={PostValidation}
+          onSubmit={handleSubmit}
+          autoComplete="off"
+        >
           <Input
             autoFocus
             name="description"
