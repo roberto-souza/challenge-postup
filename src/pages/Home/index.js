@@ -1,6 +1,11 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+import { Form } from '@rocketseat/unform';
+
+import PostActions from '~/store/ducks/post';
+
+import { PostValidation } from '~/validations';
 
 import {
   Container,
@@ -13,15 +18,30 @@ import {
 } from './styles';
 
 export default function Home() {
+  const dispatch = useDispatch();
   const posts = useSelector(state => state.post.posts);
+
+  const init = useCallback(() => {
+    dispatch(PostActions.getAllPosts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    init();
+  }, [init]);
 
   return (
     <Container>
       <ContentTop>
-        <Input placeholder="Digite o post do momento..." />
-        <ButtonAdd>
-          <Icon icon="plus" />
-        </ButtonAdd>
+        <Form schema={PostValidation} onSubmit={() => {}} autoComplete="off">
+          <Input
+            autoFocus
+            name="description"
+            placeholder="Digite o post do momento..."
+          />
+          <ButtonAdd type="submit">
+            <Icon icon="plus" />
+          </ButtonAdd>
+        </Form>
       </ContentTop>
       <ContentMiddle>
         <List>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { TextField } from 'unform-material-ui';
 
 import { colors } from '~/styles';
 
@@ -8,19 +9,26 @@ export const Container = styled.div`
 `;
 
 export const ContentTop = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
-export const Input = styled.input`
-  background-color: ${colors.white};
-  border: none;
-  border-radius: 5px;
-  color: ${colors.black};
-  padding: 10px;
-  transition: all 0.2s linear;
+export const Input = styled(TextField)`
   width: 50%;
+
+  .MuiInputBase-root {
+    color: ${colors.white} !important;
+    font-family: 'Saira', sans-serif;
+  }
+
+  .MuiInput-underline {
+    &::after {
+      border-bottom: 2px solid ${colors.secondary} !important;
+    }
+  }
 
   &:focus {
     box-shadow: 0 0 10px 1px ${darken(0.1, colors.secondary)};

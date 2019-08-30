@@ -16,6 +16,7 @@ export default function Application() {
           <Routes />
         </Main>
       </Suspense>
+      <Loader />
     </Container>
   );
 }

@@ -5,26 +5,8 @@ const Types = {
 
 export const PostTypes = Types;
 
-const eaiFake = [
-  {
-    id: 1,
-    description: 'Aqui vai um post bagual',
-    upVotes: 10,
-  },
-  {
-    id: 2,
-    description: 'Aqui vai um post bagual',
-    upVotes: 20,
-  },
-  {
-    id: 3,
-    description: 'Aqui vai um post bagual',
-    upVotes: 30,
-  },
-];
-
 const INITIAL_STATE = {
-  posts: eaiFake,
+  posts: [],
 };
 
 export function reducer(state = INITIAL_STATE, action) {
