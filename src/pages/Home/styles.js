@@ -18,7 +18,7 @@ export const Input = styled.input`
   border: none;
   border-radius: 5px;
   color: ${colors.black};
-  padding: 5px;
+  padding: 10px;
   transition: all 0.2s linear;
   width: 50%;
 
@@ -34,12 +34,49 @@ export const ButtonAdd = styled.button`
   border: 2px solid ${colors.secondary};
   border-radius: 50%;
   color: ${colors.secondary};
-  font-size: 20px;
+  font-size: 1.2rem;
   margin-left: 20px;
   transition: all 0.2s linear;
 
   &:hover {
     background-color: ${colors.secondary};
     color: ${colors.darken};
+  }
+`;
+
+export const ContentMiddle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
+`;
+
+export const List = styled.ul`
+  list-style: none;
+  width: 100%;
+`;
+
+export const Item = styled.li`
+  > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+
+    button {
+      height: 20px;
+      width: 20px;
+      background-color: ${colors.darken};
+      border: 2px solid ${colors.secondary};
+      border-radius: 50%;
+      color: ${colors.secondary};
+      font-size: 0.6rem;
+      margin-left: 20px;
+      transition: all 0.2s linear;
+
+      &:hover {
+        background-color: ${colors.secondary};
+        color: ${colors.darken};
+      }
+    }
   }
 `;

@@ -2,7 +2,15 @@ import { createGlobalStyle } from 'styled-components';
 
 import { colors } from '~/styles';
 
+import Saira from '~/assets/font/Saira.woff';
+import Saira2 from '~/assets/font/Saira.woff2';
+
 export default createGlobalStyle`
+  @font-face {
+    font-family: 'Saira';
+    src: url(${Saira}) format('woff'), url(${Saira2}) format('woff2');
+  }
+
   * {
       margin: 0;
       padding: 0;
@@ -11,7 +19,7 @@ export default createGlobalStyle`
     }
 
   html, body, #root {
-    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Saira', sans-serif;
     height: 100vh;
   }
 
@@ -28,5 +36,10 @@ export default createGlobalStyle`
     &:focus {
       outline: none;
     }
+  }
+
+  input {
+    font-size: 1rem;
+    font-family: 'Saira', sans-serif;
   }
 `;
