@@ -34,3 +34,17 @@ export function* insertPost({ payload }) {
     yield put(LoaderActions.finish());
   }
 }
+
+export function* upVotePost({ payload }) {
+  try {
+    yield put(LoaderActions.start());
+
+    yield call(PostService.upVote, payload);
+
+    yield put(PostActions.getAllPosts());
+
+    yield put(LoaderActions.finish());
+  } catch (e) {
+    yield put(LoaderActions.finish());
+  }
+}

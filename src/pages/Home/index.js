@@ -21,9 +21,13 @@ export default function Home() {
   const dispatch = useDispatch();
   const posts = useSelector(state => state.post.posts);
 
-  function handleSubmit(data, { resetForm }) {
-    dispatch(PostActions.insertPost({ ...data, upVotes: 0 }));
+  function handleSubmit(post, { resetForm }) {
+    dispatch(PostActions.insertPost(post));
     resetForm();
+  }
+
+  function handleUpVote(idPost) {
+    dispatch(PostActions.upVote(idPost));
   }
 
   const init = useCallback(() => {
@@ -59,8 +63,8 @@ export default function Home() {
               <div>
                 <span>{post.description}</span>
                 <div>
-                  <span>{post.upVotes}</span>
-                  <button type="button">
+                  <span>{post.upvote}</span>
+                  <button type="button" onClick={() => handleUpVote(post.id)}>
                     <Icon icon="chevron-up" />
                   </button>
                 </div>

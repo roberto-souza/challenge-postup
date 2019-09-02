@@ -4,4 +4,6 @@ const findAll = () => api.get(`/posts`);
 
 const insert = post => api.post(`/posts`, post);
 
-export const PostService = { findAll, insert };
+const upVote = id => api.put(`/posts/upvote/${id}`);
+
+export const PostService = { findAll, insert, upVote };

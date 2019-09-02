@@ -10,10 +10,12 @@ import './dependencies';
 
 function App() {
   return (
-    <Provider store={store}>
-      <GlobalStyles />
-      <Routes />
-    </Provider>
+    <>
+      <Provider store={store}>
+        <GlobalStyles />
+        <Routes />
+      </Provider>
+    </>
   );
 }
 
