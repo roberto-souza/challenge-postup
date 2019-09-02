@@ -32,6 +32,7 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+    font-family: 'Saira', sans-serif;
 
     &:focus {
       outline: none;

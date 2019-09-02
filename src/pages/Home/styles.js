@@ -57,6 +57,33 @@ export const ContentMiddle = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-top: 30px;
+
+  .sort {
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    color: ${colors.white};
+    cursor: pointer;
+    margin: 0 20px;
+    padding: 0 10px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 0 5px 2px ${colors.white};
+      border: 2px solid ${colors.white};
+    }
+
+    &.active {
+      border: 2px solid ${colors.white};
+    }
+  }
+`;
+
+export const ContentBottom = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
 `;
 
 export const List = styled.ul`

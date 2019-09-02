@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { Form } from '@rocketseat/unform';
@@ -9,6 +9,7 @@ import { PostValidation } from '~/validations';
 
 import {
   Container,
+  ContentBottom,
   ContentMiddle,
   ContentTop,
   Input,
@@ -18,6 +19,7 @@ import {
 } from './styles';
 
 export default function Home() {
+  const [sort, setSort] = useState('AZ');
   const dispatch = useDispatch();
   const posts = useSelector(state => state.post.posts);
 
@@ -57,6 +59,36 @@ export default function Home() {
         </Form>
       </ContentTop>
       <ContentMiddle>
+        <button
+          type="button"
+          className={`sort ${sort === 'AZ' ? 'active' : ''}`}
+          onClick={() => setSort('AZ')}
+        >
+          A-Z
+        </button>
+        <button
+          type="button"
+          className={`sort ${sort === 'ZA' ? 'active' : ''}`}
+          onClick={() => setSort('ZA')}
+        >
+          Z-A
+        </button>
+        <button
+          type="button"
+          className={`sort ${sort === 'moreUpVote' ? 'active' : ''}`}
+          onClick={() => setSort('moreUpVote')}
+        >
+          Mais votados
+        </button>
+        <button
+          type="button"
+          className={`sort ${sort === 'lessUpVote' ? 'active' : ''}`}
+          onClick={() => setSort('lessUpVote')}
+        >
+          Menos votados
+        </button>
+      </ContentMiddle>
+      <ContentBottom>
         <List>
           {posts.map(post => (
             <Item key={post.id}>
@@ -72,7 +104,7 @@ export default function Home() {
             </Item>
           ))}
         </List>
-      </ContentMiddle>
+      </ContentBottom>
     </Container>
   );
 }
