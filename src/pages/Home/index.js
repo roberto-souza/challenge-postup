@@ -19,17 +19,23 @@ import {
 } from './styles';
 
 export default function Home() {
-  const [sort, setSort] = useState('AZ');
+  const [sort, setSort] = useState('moreUpVote');
   const dispatch = useDispatch();
   const posts = useSelector(state => state.post.posts);
 
   function handleSubmit(post, { resetForm }) {
     dispatch(PostActions.insertPost(post));
+    setSort('moreUpVote');
     resetForm();
   }
 
   function handleUpVote(idPost) {
     dispatch(PostActions.upVote(idPost));
+  }
+
+  function handleSort(sortBy, param) {
+    dispatch(PostActions.getAllPosts(param));
+    setSort(sortBy);
   }
 
   const init = useCallback(() => {
@@ -62,28 +68,32 @@ export default function Home() {
         <button
           type="button"
           className={`sort ${sort === 'AZ' ? 'active' : ''}`}
-          onClick={() => setSort('AZ')}
+          onClick={() => handleSort('AZ', '&sort=description')}
         >
           A-Z
         </button>
         <button
           type="button"
           className={`sort ${sort === 'ZA' ? 'active' : ''}`}
-          onClick={() => setSort('ZA')}
+          onClick={() =>
+            handleSort('ZA', '&sort=description&sortDirection=desc')
+          }
         >
           Z-A
         </button>
         <button
           type="button"
           className={`sort ${sort === 'moreUpVote' ? 'active' : ''}`}
-          onClick={() => setSort('moreUpVote')}
+          onClick={() =>
+            handleSort('moreUpVote', '&sort=upvote&sortDirection=desc')
+          }
         >
           Mais votados
         </button>
         <button
           type="button"
           className={`sort ${sort === 'lessUpVote' ? 'active' : ''}`}
-          onClick={() => setSort('lessUpVote')}
+          onClick={() => handleSort('lessUpVote', '&sort=upvote')}
         >
           Menos votados
         </button>

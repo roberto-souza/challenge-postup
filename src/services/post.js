@@ -1,6 +1,6 @@
 import api from '~/services/api';
 
-const findAll = () => api.get(`/posts`);
+const findAll = filter => api.get(`/posts?${filter}`);
 
 const insert = post => api.post(`/posts`, post);
 

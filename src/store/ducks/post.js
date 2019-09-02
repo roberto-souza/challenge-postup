@@ -27,8 +27,9 @@ export function reducer(state = INITIAL_STATE, action) {
 }
 
 const PostActions = {
-  getAllPosts: () => ({
+  getAllPosts: filter => ({
     type: Types.GET_ALL_REQUEST,
+    payload: filter,
   }),
   getAllPostsSuccess: posts => ({
     type: Types.GET_ALL_SUCCESS,

@@ -5,11 +5,12 @@ import LoaderActions from '~/store/ducks/loader';
 
 import { PostService } from '~/services/post';
 
-export function* getAllPosts() {
+export function* getAllPosts({ payload }) {
   try {
     yield put(LoaderActions.start());
 
-    const posts = yield call(PostService.findAll);
+    const filter = payload || '';
+    const posts = yield call(PostService.findAll, filter);
 
     if (posts.ok) {
       yield put(PostActions.getAllPostsSuccess(posts.data));
@@ -27,7 +28,7 @@ export function* insertPost({ payload }) {
 
     yield call(PostService.insert, payload);
 
-    yield put(PostActions.getAllPosts());
+    yield put(PostActions.getAllPosts('sort=upvote&sortDirection=desc'));
 
     yield put(LoaderActions.finish());
   } catch (e) {
